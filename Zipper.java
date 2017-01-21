@@ -4,8 +4,29 @@ public class Zipper {
 
     // Deben asumir que first y second no son null
     public static int[] zipper(int[] first, int[] second) {
-        // su codigo aqui
-        return new int[1];
+    	int n[] = new int[first.length + second.length];
+
+	for(int i = 0 ; i < first.length; i++ ){
+		n[i] = first[i];
+	}
+
+	for(int i=0; i<second.length; i++){
+		n[first.length + i] = second[i];
+	}
+
+        
+        int temp;
+		for (int i = 0; i < n.length - 1; i++) {
+ 
+			for (int j = 1; j < n.length - i; j++) {
+				if (n[j - 1] > n[j]) {
+					temp = n[j - 1];
+					n[j - 1] = n[j];
+					n[j] = temp;
+				}
+			}
+		}
+        return n;
     }
 
     // NO MODIFICAR A PARTIR DE AQUI
